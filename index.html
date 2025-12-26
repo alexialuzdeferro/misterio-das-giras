@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Mistério das 12 Pombagiras</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #d4af37;
+            --primary-foreground: #1a0f2e;
+            --background: #0f0a1a;
+            --foreground: #e8e0f0;
+            --card: #1a1430;
+            --secondary: #7209b7;
+            --muted: #3a0ca3;
+            --accent: #d4af37;
+            --accent-foreground: #0f0a1a;
+            --border: #3a2d5a;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.75rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding: 0 2rem;
+            }
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            border-bottom: 1px solid rgba(58, 45, 90, 0.5);
+            background-color: rgba(15, 10, 26, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: var(--accent-foreground);
+        }
+
+        .logo-text h1 {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: rgba(232, 224, 240, 0.6);
+            margin: 0;
+        }
+
+        nav {
+            display: none;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            nav {
+                display: flex;
+            }
+        }
+
+        nav a {
+            font-size: 0.875rem;
+            color: rgba(232, 224, 240, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 5rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                padding: 8rem 0;
+            }
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, var(--background), rgba(15, 10, 26, 0.6), rgba(15, 10, 26, 0.4));
+        }
+
+        .hero-overlay-bottom {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--background), transparent);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 42rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 9999px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge p {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero h2 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: rgba(232, 224, 240, 0.8);
+            margin-bottom: 2rem;
+            max-width: 28rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .hero-buttons {
+                flex-direction: row;
+            }
+        }
+
+        button, a.btn {
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--accent-foreground);
+        }
+
+        .btn-primary:hover {
+            background-color: #c9a227;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Divider */
+        .divider {
+            position: relative;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 2rem 0;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .about {
+                padding: 6rem 0;
+            }
+        }
+
+        .about-grid {
+            display: grid;
+            gap: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+        }
+
+        .about h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .about p {
+            color: rgba(232, 224, 240, 0.8);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-card {
+            position: relative;
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 2rem;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(114, 9, 183, 0.2));
+            border-radius: 0.5rem;
+            filter: blur(20px);
+            pointer-events: none;
+        }
+
+        .about-card-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .about-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-item-icon {
+            font-size: 1.875rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .about-item h4 {
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .about-item p {
+            font-size: 0.875rem;
+            color: rgba(232, 224, 240, 0.7);
+            margin: 0;
+        }
+
+        /* Pombagiras Grid */
+        .pombagiras-section {
+            padding: 4rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .pombagiras-section {
+                padding: 6rem 0;
+            }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: rgba(232, 224, 240, 0.7);
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        .pombagiras-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .pombagiras-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .pombagiras-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .card:hover {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .card-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+
+        .card-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover .card-bg img {
+            opacity: 0.6;
+        }
+
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--background), rgba(15, 10, 26, 0.5), transparent);
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .card h3 {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-subtitle {
+            font-size: 0.875rem;
+            color: rgba(212, 175, 55, 0.8);
+            margin-bottom: 0.75rem;
+        }
+
+        .card p {
+            font-size: 0.875rem;
+            color: rgba(232, 224, 240, 0.8);
+            line-clamp: 2;
+            margin-bottom: 1rem;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(212, 175, 55, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card-arrow {
+            color: var(--accent);
+            transition: transform 0.3s;
+        }
+
+        .card:hover .card-arrow {
+            transform: translateX(4px);
+        }
+
+        /* Fundamentos Section */
+        .fundamentos {
+            padding: 4rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .fundamentos {
+                padding: 6rem 0;
+            }
+        }
+
+        .fundamentos-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .fundamentos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .fundamentos-card {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .fundamentos-card:hover {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .fundamentos-card h4 {
+            color: var(--accent);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .fundamentos-card p {
+            color: rgba(232, 224, 240, 0.8);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(58, 45, 90, 0.5);
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .footer-section h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            font-size: 0.875rem;
+            color: rgba(232, 224, 240, 0.7);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(232, 224, 240, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(58, 45, 90, 0.5);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: rgba(232, 224, 240, 0.6);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 1rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            max-width: 42rem;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 10;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: rgba(212, 175, 55, 0.1);
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background-color: rgba(212, 175, 55, 0.2);
+        }
+
+        .modal-header {
+            position: relative;
+            height: 16rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .modal-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-header-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--background), rgba(15, 10, 26, 0.3), transparent);
+        }
+
+        .modal-header-text {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+        }
+
+        .modal-header-text h2 {
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .modal-header-text p {
+            color: rgba(212, 175, 55, 0.8);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-section h3 {
+            color: var(--accent);
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-section p {
+            color: rgba(232, 224, 240, 0.8);
+            line-height: 1.8;
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-grid-item {
+            background-color: rgba(15, 10, 26, 0.5);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .modal-grid-item p:first-child {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(212, 175, 55, 0.6);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-grid-item p:last-child {
+            color: var(--foreground);
+            font-weight: 500;
+        }
+
+        .modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .modal-tag {
+            font-size: 0.75rem;
+            background-color: rgba(212, 175, 55, 0.2);
+            color: var(--accent);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+        }
+
+        .modal-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .modal-list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: rgba(232, 224, 240, 0.8);
+        }
+
+        .modal-list-item span:first-child {
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .modal-footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .modal-footer button {
+            width: 100%;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">✦</div>
+                    <div class="logo-text">
+                        <h1>Pombagiras</h1>
+                        <p>O Mistério das 12 Guardiãs</p>
+                    </div>
+                </div>
+                <nav>
+                    <a href="#sobre">Sobre</a>
+                    <a href="#guardiãs">As 12 Guardiãs</a>
+                    <a href="#fundamentos">Fundamentos</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="https://raw.githubusercontent.com/alexialuzdeferro/misterio-das-giras/refs/heads/main/hero_pombagira.png" alt="Hero">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-overlay-bottom"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <p>Ensinamentos Sagrados</p>
+                </div>
+                <h2>O Mistério das 12 Pombagiras</h2>
+                <p>Mergulhe no conhecimento profundo das guardiãs da encruzilhada. Cada uma delas representa um mistério, um poder e um caminho único na jornada espiritual.</p>
+                <div class="hero-buttons">
+                    <a href="#guardiãs" class="btn btn-primary">Explorar as Guardiãs</a>
+                    <a href="#fundamentos" class="btn btn-secondary">Fundamentos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="container">
+        <div class="divider"></div>
+    </div>
+
+    <!-- About Section -->
+    <section id="sobre" class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <h3>Quem são as Pombagiras?</h3>
+                    <p>Na teologia da Umbanda Sagrada, Pombagira é elevada à categoria de Orixá, sendo o Mistério Divino que rege o desejo e o estímulo. Ela simboliza a força feminina que atua na polaridade negativa e positiva, absorvendo os negativismos e estimulando o prazer, a alegria e o equilíbrio interior.</p>
+                    <p>As Pombagiras que se manifestam nos terreiros são espíritos que trabalham sob a regência maior deste Mistério, atuando como guardiãs, conselheiras e mestras na arte de viver com autonomia e autoestima.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-content">
+                        <div class="about-item">
+                            <span class="about-item-icon">✦</span>
+                            <div>
+                                <h4>Poder Feminino</h4>
+                                <p>Força, autonomia e liberdade</p>
+                            </div>
+                        </div>
+                        <div class="about-item">
+                            <span class="about-item-icon">◆</span>
+                            <div>
+                                <h4>Guardiãs da Encruzilhada</h4>
+                                <p>Mestras dos caminhos e decisões</p>
+                            </div>
+                        </div>
+                        <div class="about-item">
+                            <span class="about-item-icon">◇</span>
+                            <div>
+                                <h4>Conselheiras Sábias</h4>
+                                <p>Conhecimento profundo e transformador</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="container">
+        <div class="divider"></div>
+    </div>
+
+    <!-- Pombagiras Section -->
+    <section id="guardiãs" class="pombagiras-section">
+        <div class="container">
+            <div class="section-header">
+                <h3>As 12 Guardiãs</h3>
+                <p>Cada Pombagira carrega um mistério único, um domínio específico e uma energia que guia aqueles que buscam conhecimento e transformação.</p>
+            </div>
+            <div class="pombagiras-grid" id="pombagiras-grid"></div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="container">
+        <div class="divider"></div>
+    </div>
+
+    <!-- Fundamentos Section -->
+    <section id="fundamentos" class="fundamentos">
+        <div class="container">
+            <h3 style="text-align: center; color: var(--accent); margin-bottom: 3rem;">Fundamentos Teológicos</h3>
+            <div class="fundamentos-grid">
+                <div class="fundamentos-card">
+                    <h4>Origem do Nome</h4>
+                    <p>O termo Pombagira é uma corruptela de <em>Mpambu Njila</em>, um Nkisi (divindade Bantu) dos caminhos, análogo ao Orixá Exu. Na Umbanda Sagrada, é elevada à categoria de Orixá, representando o Mistério Divino que rege o desejo, o estímulo e o sagrado feminino.</p>
+                </div>
+                <div class="fundamentos-card">
+                    <h4>Atuação Espiritual</h4>
+                    <p>As Pombagiras atuam na polaridade negativa e positiva. Na negativa, absorvem mágoas, rancores e dores profundas da alma. Na positiva, trazem energias de estímulo, prazer, alegria e equilíbrio interior.</p>
+                </div>
+                <div class="fundamentos-card">
+                    <h4>Falanges e Hierarquia</h4>
+                    <p>As Pombagiras trabalham em falanges (agrupamentos de espíritos com mesma vibração). Cada uma delas trabalha sob a regência maior do Orixá Pombagira, atuando como guardiãs especializadas em diferentes domínios.</p>
+                </div>
+                <div class="fundamentos-card">
+                    <h4>Sincretismo e Arquétipos</h4>
+                    <p>Cada Pombagira possui um arquétipo único, frequentemente ligado a figuras históricas, lendárias ou mitológicas. Elas representam diferentes aspectos do feminino sagrado e da força transformadora.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Sobre este Site</h4>
+                    <p>Um espaço dedicado ao conhecimento profundo das 12 Pombagiras, suas histórias, fundamentos e ensinamentos sagrados.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#guardiãs">As 12 Guardiãs</a></li>
+                        <li><a href="#fundamentos">Fundamentos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Respeito e Reverência</h4>
+                    <p>Este material é oferecido com profundo respeito às tradições da Umbanda e Quimbanda.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 O Mistério das 12 Pombagiras. Desenvolvido com reverência e conhecimento sagrado. Todos os direitos reservados - By; Alexia Melusine </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div class="modal-header">
+                <img id="modal-img" alt="">
+                <div class="modal-header-overlay"></div>
+                <div class="modal-header-text">
+                    <h2 id="modal-name"></h2>
+                    <p id="modal-subtitle"></p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>Domínio Principal</h3>
+                    <p id="modal-domain"></p>
+                </div>
+                <div class="modal-section">
+                    <h3>Sobre</h3>
+                    <p id="modal-description"></p>
+                </div>
+                <div class="modal-grid">
+                    <div class="modal-grid-item">
+                        <p>Dia de Reverência</p>
+                        <p id="modal-day"></p>
+                    </div>
+                    <div class="modal-grid-item">
+                        <p>Fase da Lua</p>
+                        <p id="modal-moon"></p>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h3>Cores</h3>
+                    <div class="modal-tags" id="modal-colors"></div>
+                </div>
+                <div class="modal-section">
+                    <h3>Signos Associados</h3>
+                    <div class="modal-tags" id="modal-signs"></div>
+                </div>
+                <div class="modal-section">
+                    <h3>Oferendas</h3>
+                    <div class="modal-list" id="modal-offerings"></div>
+                </div>
+                <div class="modal-section">
+                    <h3>Simbolismo</h3>
+                    <div class="modal-list" id="modal-symbolism"></div>
+                </div>
+                <div class="modal-section">
+                    <h3>Locais de Oferenda</h3>
+                    <div class="modal-list" id="modal-places"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="closeModal()">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dados das Pombagiras
+        const pombagiras = [
+            {
+                id: "maria-padilha",
+                name: "Maria Padilha",
+                subtitle: "O Comando e a Realeza",
+                domainPrincipal: "Poder, Realeza, Feitiçaria e Sedução",
+                descricaoCurta: "A rainha das Pombagiras, guardiã do poder e da liderança. Invocada para questões de autoridade e abertura de caminhos.",
+                descricaoCompleta: "Maria Padilha é uma das Pombagiras mais conhecidas e reverenciadas. Sua história está ligada à Maria de Padilla, amante de Pedro I de Castela, uma mulher de grande influência política. Sua energia é de liderança, controle e justiça, sendo invocada para abrir caminhos em situações de autoridade e para a resolução de questões amorosas complexas.",
+                dia: "Sexta-feira",
+                lua: "Lua cheia (poder máximo)",
+                cores: ["Vermelho", "Dourado", "Preto"],
+                oferendas: ["Champanhe", "Rosas vermelhas", "Joias", "Velas douradas", "Perfumes caros"],
+                signos: ["Leão", "Escorpião"],
+                locais: ["Encruzilhadas limpas", "Altares decorados com luxo", "Espelhos"],
+                simbolismo: ["Coroa", "Cetro", "Espelho", "Rosas vermelhas"],
+                imageUrl: "https://raw.githubusercontent.com/alexialuzdeferro/misterio-das-giras/refs/heads/main/maria_padilha.png"
+            },
+            {
+                id: "maria-mulambo",
+                name: "Maria Mulambo",
+                subtitle: "A Cura e a Transformação",
+                domainPrincipal: "Cura, Humildade, Limpeza Espiritual e Transformação",
+                descricaoCurta: "A mestra da transformação e da cura. Transforma o lixo em luxo e ensina a resiliência através da simplicidade.",
+                descricaoCompleta: "Maria Mulambo é a Pombagira que atua na cura de doenças físicas e espirituais, especialmente aquelas ligadas ao abandono e à miséria. Uma lenda conta que ela foi uma princesa que, por amor, abdicou de sua riqueza e terminou na pobreza, aprendendo o valor da resiliência. Ela é mestra na arte de transformar o que não serve mais em algo útil e belo.",
+                dia: "Segunda-feira ou quarta-feira",
+                lua: "Lua minguante (limpeza e cura)",
+                cores: ["Branco", "Verde-claro", "Cinza"],
+                oferendas: ["Velas brancas", "Flores do campo", "Água de cheiro", "Pão", "Mel", "Ervas medicinais"],
+                signos: ["Virgem", "Câncer"],
+                locais: ["Encruzilhadas simples", "Portas de hospitais", "Locais de caridade"],
+                simbolismo: ["Trapos limpos", "Vasos de barro", "Ervas"],
+                imageUrl: "https://raw.githubusercontent.com/alexialuzdeferro/misterio-das-giras/refs/heads/main/maria_mulambo.png"
+            },
+            {
+                id: "maria-quiteria",
+                name: "Maria Quitéria",
+                subtitle: "A Guerra e a Proteção",
+                domainPrincipal: "Guerra, Proteção, Corte de Demandas e Disciplina",
+                descricaoCurta: "A guerreira da falange. Protege contra inimigos e dá força em batalhas pessoais e espirituais.",
+                descricaoCompleta: "Maria Quitéria é o arquétipo da guerreira, associada à proteção e à luta. Seu nome remete à heroína brasileira Maria Quitéria de Jesus, que lutou pela Independência do Brasil. Sua energia é de coragem, determinação e corte de demandas. Ela é invocada para proteger contra inimigos, sejam eles físicos ou espirituais.",
+                dia: "Terça-feira (dia de Ogum)",
+                lua: "Lua crescente (energias de luta e crescimento)",
+                cores: ["Vermelho", "Marrom", "Preto"],
+                oferendas: ["Velas vermelhas", "Espadas ou facas", "Cerveja preta", "Pimenta", "Comidas apimentadas"],
+                signos: ["Áries", "Escorpião"],
+                locais: ["Encruzilhadas de estradas movimentadas", "Campos de batalha simbólicos"],
+                simbolismo: ["Espada", "Escudo", "Armadura", "Bandeira"],
+                imageUrl: "https://raw.githubusercontent.com/alexialuzdeferro/misterio-das-giras/refs/heads/main/maria_quiteria.png"
+            },
+            {
+                id: "rosa-caveira",
+                name: "Rosa Caveira",
+                subtitle: "A Justiça e a Transmutação",
+                domainPrincipal: "Justiça, Morte (Ciclos), Transmutação e Lei Cármica",
+                descricaoCurta: "A guardiã da justiça divina. Transmuta energias e reparação de injustiças através da lei cármica.",
+                descricaoCompleta: "Rosa Caveira é uma entidade de grande poder, ligada ao ciclo da vida e da morte (Calunga) e à Justiça Divina. Seu simbolismo é a união da rosa (beleza, vida, paixão) com a caveira (morte, transitoriedade, igualdade), representando a mestria sobre os extremos da existência. Sua energia é intensa e exige respeito e preparo.",
+                dia: "Sábado",
+                lua: "Lua nova (transformação) ou lua cheia (justiça)",
+                cores: ["Preto", "Vermelho-sangue", "Roxo"],
+                oferendas: ["Velas pretas", "Rosas vermelhas e pretas", "Vinho tinto", "Ossos", "Moedas"],
+                signos: ["Escorpião", "Plutão"],
+                locais: ["Cemitérios (especialmente à noite)", "Encruzilhadas escuras"],
+                simbolismo: ["Caveira", "Rosa", "Balança", "Foice"],
+                imageUrl: "https://raw.githubusercontent.com/alexialuzdeferro/misterio-das-giras/refs/heads/main/rosa_caveira.png"
+            },
+            {
+                id: "dama-noite",
+                name: "Dama da Noite",
+                subtitle: "O Mistério e o Oculto",
+                domainPrincipal: "Mistério, Ocultismo, Intuição e Sedução Discreta",
+                descricaoCurta: "A senhora dos segredos e da magia noturna. Desvendar verdades escondidas e proteger o oculto.",
+                descricaoCompleta: "A Dama da Noite é a senhora dos segredos e do oculto. Ela rege os mistérios da noite, da magia e do desconhecido. Seu nome remete à flor que desabrocha apenas à noite, simbolizando sua conexão com o invisível. É uma Pombagira que exige respeito e discricionamento, pois seu conhecimento é profundo e perigoso para os imprudentes.",
+                dia: "Sexta-feira (noite)",
+                lua: "Lua negra (mistério máximo)",
+                cores: ["Preto", "Roxo", "Azul-escuro"],
+                oferendas: ["Velas pretas", "Flores noturnas", "Vinho", "Incenso de mirra", "Objetos prateados"],
+                signos: ["Escorpião", "Peixes"],
+                locais: ["Locais escuros", "Florestas à noite", "Altares cobertos"],
+                simbolismo: ["Lua crescente", "Olho", "Chave", "Morcego"],
+                imageUrl: "https://raw.githubusercontent.com/alexialuzdeferro/misterio-das-giras/refs/heads/main/dama_noite.png"
+            },
+            {
+                id: "sete-saias",
+                name: "Sete Saias",
+                subtitle: "A Alegria e a Intensidade",
+                domainPrincipal: "Alegria, Intensidade, Movimento e Abundância",
+                descricaoCurta: "A dançarina da vida. Suas sete saias coloridas trazem alegria, movimento e paixão à existência.",
+                descricaoCompleta: "Sete Saias é a Pombagira da alegria, da dança e da intensidade da vida. Suas sete saias coloridas representam os sete mistérios, as sete linhas da Umbanda ou os sete caminhos que ela domina. Ela é invocada para trazer movimento, paixão, fertilidade e abundância. Sua dança é um ato de magia que atrai a felicidade.",
+                dia: "Quinta-feira ou domingo",
+                lua: "Lua crescente (alegria) ou cheia (intensidade)",
+                cores: ["Multicolorido", "Vermelho", "Rosa", "Amarelo"],
+                oferendas: ["Doces", "Frutas", "Velas coloridas", "Tecidos", "Música", "Dança"],
+                signos: ["Sagitário", "Leão"],
+                locais: ["Praças", "Festas", "Encruzilhadas alegres"],
+                simbolismo: ["Saias coloridas", "Tambor", "Máscara"],
+                imageUrl: "https://raw.githubusercontent.com/alexialuzdeferro/misterio-das-giras/refs/heads/main/sete_saias.png"
+            },
+            {
+                id: "cigana",
+                name: "Pombagira Cigana",
+                subtitle: "A Liberdade e a Prosperidade",
+                domainPrincipal: "Liberdade, Prosperidade, Magia e Adivinhação",
+                descricaoCurta: "A senhora da liberdade e da sorte. Leitura de destino, viagens e prosperidade material.",
+                descricaoCompleta: "A Pombagira Cigana está ligada ao Povo do Oriente e à cultura nômade, simbolizando a liberdade, a prosperidade e a magia das cartas. Ela é mestra na leitura do destino e na manipulação dos elementos naturais para a sorte e a fortuna. É invocada para questões de independência, viagens e prosperidade material.",
+                dia: "Quarta-feira",
+                lua: "Lua cheia (prosperidade)",
+                cores: ["Vermelho", "Dourado", "Verde"],
+                oferendas: ["Moedas", "Joias", "Cartas de baralho", "Velas douradas", "Vinho doce"],
+                signos: ["Sagitário", "Touro"],
+                locais: ["Estradas", "Acampamentos", "Feiras"],
+                simbolismo: ["Carruagem", "Cartas", "Cristais", "Rodas"],
+                imageUrl: "https://raw.githubusercontent.com/alexialuzdeferro/misterio-das-giras/refs/heads/main/cigana.png"
+            },
+            {
+                id: "maria-navalha",
+                name: "Maria Navalha",
+                subtitle: "A Malandragem e a Sobrevivência",
+                domainPrincipal: "Rua, Malandragem, Proteção Urbana e Sobrevivência",
+                descricaoCurta: "A malandra das ruas. Proteção em ambientes perigosos e astúcia na luta diária.",
+                descricaoCompleta: "Maria Navalha é o arquétipo da malandra, da rua e da sobrevivência. Seu nome evoca a navalha, símbolo de proteção e de justiça nas mãos daqueles que precisam se defender. Ela é invocada para questões de proteção em ambientes perigosos, para afugentar maus elementos e para dar astúcia.",
+                dia: "Terça-feira ou sexta-feira à noite",
+                lua: "Lua minguante (proteção)",
+                cores: ["Preto", "Vermelho", "Prata"],
+                oferendas: ["Facas ou navalhas", "Cerveja", "Cigarro", "Dinheiro"],
+                signos: ["Escorpião", "Gêmeos"],
+                locais: ["Ruas movimentadas", "Becos", "Encruzilhadas urbanas"],
+                simbolismo: ["Navalha", "Chave", "Carta de baralho"],
+                imageUrl: "https://raw.githubusercontent.com/alexialuzdeferro/misterio-das-giras/refs/heads/main/maria_navalha.png"
+            },
+            {
+                id: "praia",
+                name: "Pombagira da Praia",
+                subtitle: "A Emoção e a Limpeza (Água)",
+                domainPrincipal: "Emoções, Limpeza Espiritual, Renovação e Equilíbrio",
+                descricaoCurta: "A senhora das águas salgadas. Purificação, renovação e equilíbrio emocional.",
+                descricaoCompleta: "A Pombagira da Praia é a senhora das águas salgadas, das emoções e da limpeza espiritual. Ela atua na purificação, na renovação e no equilíbrio emocional, sendo uma entidade de grande acolhimento. É invocada para limpar energias negativas, para trazer calma e para trabalhar questões ligadas ao coração.",
+                dia: "Quinta-feira ou segunda-feira",
+                lua: "Lua cheia (emoção) ou crescente (limpeza)",
+                cores: ["Azul", "Branco", "Prata"],
+                oferendas: ["Água do mar", "Conchas", "Velas azuis", "Flores brancas", "Perfumes suaves"],
+                signos: ["Câncer", "Peixes"],
+                locais: ["Praias", "Margens de rios", "Banheiros"],
+                simbolismo: ["Concha", "Onda", "Pérola", "Rede"],
+                imageUrl: "https://raw.githubusercontent.com/alexialuzdeferro/misterio-das-giras/refs/heads/main/praia.png"
+            },
+            {
+                id: "maria-farrapo",
+                name: "Maria Farrapo",
+                subtitle: "A Sanidade e o Caos Mental",
+                domainPrincipal: "Sanidade Mental, Transformação, Limpeza de Obsessores",
+                descricaoCurta: "A guardiã da sanidade mental. Auxílio em questões de saúde mental e limpeza de obsessores.",
+                descricaoCompleta: "Maria Farrapo é a Pombagira que lida com a sanidade e o caos mental. Seu nome remete à desordem e à necessidade de reconstrução, simbolizando a capacidade de transformar a confusão em clareza. Ela é invocada para ajudar em questões de saúde mental, para acalmar mentes perturbadas e para trazer clareza em momentos de confusão.",
+                dia: "Segunda-feira",
+                lua: "Lua minguante (limpeza mental)",
+                cores: ["Branco sujo", "Cinza", "Lilás"],
+                oferendas: ["Velas brancas", "Ervas calmantes", "Água com sal", "Pano branco"],
+                signos: ["Virgem", "Peixes"],
+                locais: ["Hospitais psiquiátricos (simbólicos)", "Encruzilhadas silenciosas"],
+                simbolismo: ["Pano rasgado", "Nó", "Labirinto"],
+                imageUrl: "https://raw.githubusercontent.com/alexialuzdeferro/misterio-das-giras/refs/heads/main/maria_farrapo.png"
+            },
+            {
+                id: "menina",
+                name: "Pombagira Menina",
+                subtitle: "A Renovação e a Inocência",
+                domainPrincipal: "Renovação, Inocência, Recomeço e Esperança",
+                descricaoCurta: "A energia do recomeço. Renovação, pureza de intenção e abertura de novos caminhos.",
+                descricaoCompleta: "A Pombagira Menina representa a renovação, a inocência (no sentido de pureza de intenção) e o recomeço. Ela carrega a energia da criança, da esperança e da pureza, mas com a sabedoria de quem já viveu e renasceu. É invocada para trazer leveza, para renovar energias e para proteger crianças e projetos novos.",
+                dia: "Domingo",
+                lua: "Lua nova (renovação)",
+                cores: ["Rosa", "Branco", "Azul-claro"],
+                oferendas: ["Doces", "Brinquedos", "Balas", "Velas rosas", "Flores brancas"],
+                signos: ["Áries", "Libra"],
+                locais: ["Parques", "Escolas", "Encruzilhadas limpas"],
+                simbolismo: ["Boneca", "Flor", "Borboleta", "Sino"],
+                imageUrl: "https://raw.githubusercontent.com/alexialuzdeferro/misterio-das-giras/refs/heads/main/menina.png"
+            },
+            {
+                id: "figueira",
+                name: "Pombagira da Figueira",
+                subtitle: "A Raiz e a Ancestralidade (Terra)",
+                domainPrincipal: "Ancestralidade, Raízes, Estabilidade e Conhecimento da Terra",
+                descricaoCurta: "A guardiã das raízes. Fortalecimento familiar, ancestralidade e conexão com a terra.",
+                descricaoCompleta: "A Pombagira da Figueira é a guardiã das raízes, da ancestralidade e da conexão com a terra. A figueira é um símbolo de resistência, longevidade e ligação com o passado. Ela é invocada para fortalecer laços familiares, para honrar os ancestrais e para trazer estabilidade e firmeza.",
+                dia: "Sábado",
+                lua: "Lua minguante (raízes)",
+                cores: ["Marrom", "Verde-escuro", "Preto"],
+                oferendas: ["Folhas de figueira", "Velas verdes", "Terra", "Sementes", "Mel"],
+                signos: ["Touro", "Capricórnio"],
+                locais: ["Pé de figueira", "Florestas", "Encruzilhadas rurais"],
+                simbolismo: ["Raízes", "Árvore", "Semente", "Vasos de barro"],
+                imageUrl: "https://raw.githubusercontent.com/alexialuzdeferro/misterio-das-giras/refs/heads/main/figueira.png"
+            }
+        ];
+
+        // Renderizar grid de Pombagiras
+        function renderPombagiras() {
+            const grid = document.getElementById('pombagiras-grid');
+            grid.innerHTML = pombagiras.map(p => `
+                <div class="card" onclick="openModal('${p.id}')">
+                    <div class="card-bg">
+                        <img src="${p.imageUrl}" alt="${p.name}" loading="lazy">
+                    </div>
+                    <div class="card-overlay"></div>
+                    <div class="card-content">
+                        <h3>${p.name}</h3>
+                        <p class="card-subtitle">${p.subtitle}</p>
+                        <p>${p.descricaoCurta}</p>
+                        <div class="card-footer">
+                            <span>${p.domainPrincipal.split(',')[0]}</span>
+                            <span class="card-arrow">→</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Abrir modal
+        function openModal(id) {
+            const p = pombagiras.find(x => x.id === id);
+            if (!p) return;
+
+            document.getElementById('modal-img').src = p.imageUrl;
+            document.getElementById('modal-name').textContent = p.name;
+            document.getElementById('modal-subtitle').textContent = p.subtitle;
+            document.getElementById('modal-domain').textContent = p.domainPrincipal;
+            document.getElementById('modal-description').textContent = p.descricaoCompleta;
+            document.getElementById('modal-day').textContent = p.dia;
+            document.getElementById('modal-moon').textContent = p.lua;
+
+            document.getElementById('modal-colors').innerHTML = p.cores.map(c => `<span class="modal-tag">${c}</span>`).join('');
+            document.getElementById('modal-signs').innerHTML = p.signos.map(s => `<span class="modal-tag">${s}</span>`).join('');
+
+            document.getElementById('modal-offerings').innerHTML = p.oferendas.map(o => `
+                <div class="modal-list-item">
+                    <span>•</span>
+                    <span>${o}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('modal-symbolism').innerHTML = p.simbolismo.map(s => `
+                <div class="modal-list-item">
+                    <span>✦</span>
+                    <span>${s}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('modal-places').innerHTML = p.locais.map(l => `
+                <div class="modal-list-item">
+                    <span>◆</span>
+                    <span>${l}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('modal').classList.add('active');
+        }
+
+        // Fechar modal
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        // Fechar modal ao clicar fora
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPombagiras();
+        });
+    </script>
+</body>
+</html>
