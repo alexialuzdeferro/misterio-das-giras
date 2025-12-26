@@ -59,7 +59,7 @@ Pombagira da Figueira
 
 Clone o repositório:
 
-Bashgit clone https://github.com/alexialuzdeferro/misterio-das-giras.git
+Bashgit clone https://alexialuzdeferro.github.io/misterio-das-giras/
 
 Abra o arquivo index.html no navegador
 
